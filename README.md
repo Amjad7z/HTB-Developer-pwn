@@ -8,30 +8,6 @@
     <h1 class="post-title p-name" itemprop="name headline">HTB: Developer</h1>
     <p class="post-meta">
 
-<span class="tag-list"><a href="/tags.html#ctf " class="post-tag">ctf</a> <a href="/tags.html#htb-developer " class="post-tag">htb-developer</a> <a href="/tags.html#hackthebox " class="post-tag">hackthebox</a> <a href="/tags.html#youtube " class="post-tag">youtube</a> <a href="/tags.html#nmap " class="post-tag">nmap</a> <a href="/tags.html#feroxbuster " class="post-tag">feroxbuster</a> <a href="/tags.html#django " class="post-tag">django</a> <a href="/tags.html#python " class="post-tag">python</a> <a href="/tags.html#crypto " class="post-tag">crypto</a> <a href="/tags.html#dnspy " class="post-tag">dnspy</a> <a href="/tags.html#ps2exe " class="post-tag">ps2exe</a> <a href="/tags.html#xls " class="post-tag">xls</a> <a href="/tags.html#office " class="post-tag">office</a> <a href="/tags.html#hashcat " class="post-tag">hashcat</a> <a href="/tags.html#reverse-engineering " class="post-tag">reverse-engineering</a> <a href="/tags.html#gdb " class="post-tag">gdb</a> <a href="/tags.html#ghidra " class="post-tag">ghidra</a> <a href="/tags.html#cyberchef " class="post-tag">cyberchef</a> <a href="/tags.html#reverse-tab-nabbing " class="post-tag">reverse-tab-nabbing</a> <a href="/tags.html#flask " class="post-tag">flask</a> <a href="/tags.html#deserialization " class="post-tag">deserialization</a> <a href="/tags.html#sentry " class="post-tag">sentry</a> <a href="/tags.html#postgres " class="post-tag">postgres</a> </span><br><br>
-
-
-<time class="dt-published" datetime="2022-01-15T14:45:00+00:00" itemprop="datePublished">Jan 15, 2022
-      </time></p>
-
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="sticky-top">
-            <p><a href="#" style="color: #e6e6e6; text-decoration: none;">HTB: Developer</a></p>
-	    <!--https://afeld.github.io/bootstrap-toc/-->  
-          <nav id="toc" data-toggle="toc"><ul class="nav navbar-nav"><li><a class="nav-link" href="#box-stats">Box Stats</a></li><li><a class="nav-link" href="#recon">Recon</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#nmap">nmap</a></li><li><a class="nav-link" href="#website---tcp-80">Website - TCP 80</a></li><li><a class="nav-link" href="#challenges">Challenges</a></li></ul></li><li><a class="nav-link" href="#shell-as-www-data">Shell as www-data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#reverse-tab-nabbing-exploit">Reverse Tab-Nabbing Exploit</a></li><li><a class="nav-link" href="#django-deserialization">Django Deserialization</a></li></ul></li><li><a class="nav-link" href="#shell-as-karl">Shell as karl</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#enumeration">Enumeration</a></li><li><a class="nav-link" href="#crack-hashes">Crack Hashes</a></li><li><a class="nav-link" href="#ssh">SSH</a></li></ul></li><li><a class="nav-link active" href="#shell-as-root">Shell as root</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#enumeration-1">Enumeration</a></li><li><a class="nav-link" href="#re">RE</a></li><li><a class="nav-link active" href="#ssh-1">SSH</a></li></ul></li></ul></nav>
-        </div>
-      </div>
-      <div class="col-sm-9">
-        
-<picture>
-    <source type="image/webp" srcset="/img/developer-cover.webp">
-    <img src="/img/developer-cover." alt="Developer" style="float: right; margin-right:50px; margin-left:50px; height:120px;" class="include_image ">
-</picture>
 
 <p>Developer is a CTF platform modeled off of HackTheBox! When I sign up for an account, there are eight real challenges to play across four different categories. On solving one, I can submit a write-up link, which the admin will click. This link is vulnerable to reverse-tab-nabbing, a neat exploit where the writeup opens in a new window, but it can get the original window to redirect to a site of my choosing. I’ll make it look like it logged out, and capture credentials from the admin, giving me access to the Django admin panel and the Sentry application. I’ll crash that application to see Django is running in debug mode, and get the secret necessary to perform a deserialization attack, providing execution and a foothold on the box. I’ll dump the Django hashes from the Postgresql DB for Senty and crack them to get the creds for the next user. For root, there’s a sudo executable that I can reverse to get the password which leads to SSH access as root.</p>
 <h2 id="box-stats">Box Stats</h2>
