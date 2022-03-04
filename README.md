@@ -4,9 +4,6 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope="" itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">HTB: Developer</h1>
-    <p class="post-meta">
 
 
 <p>Developer is a CTF platform modeled off of HackTheBox! When I sign up for an account, there are eight real challenges to play across four different categories. On solving one, I can submit a write-up link, which the admin will click. This link is vulnerable to reverse-tab-nabbing, a neat exploit where the writeup opens in a new window, but it can get the original window to redirect to a site of my choosing. I’ll make it look like it logged out, and capture credentials from the admin, giving me access to the Django admin panel and the Sentry application. I’ll crash that application to see Django is running in debug mode, and get the secret necessary to perform a deserialization attack, providing execution and a foothold on the box. I’ll dump the Django hashes from the Postgresql DB for Senty and crack them to get the creds for the next user. For root, there’s a sudo executable that I can reverse to get the password which leads to SSH access as root.</p>
